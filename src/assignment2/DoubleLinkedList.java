@@ -15,6 +15,16 @@ import java.util.Deque;
 import java.util.Iterator;
 
 public class DoubleLinkedList<E> implements Deque<E>{
+    private Node<E> first;
+    private Node<E> last;
+    private int count;
+    
+    public DoubleLinkedList()
+    {
+        first = null;
+        last = null;
+        count = 0;
+    }
 
     @Override
     public void addFirst(E e) {
@@ -88,7 +98,29 @@ public class DoubleLinkedList<E> implements Deque<E>{
 
     @Override
     public boolean add(E e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(e == null)
+        {
+            return false;
+        }
+        if(count == 0)
+        {
+            first = last = new Node(e);
+        }
+        else
+        {
+            Node<E> newNode = new Node(e);
+            first.add(newNode);
+            if(first.previous() != null)
+            {
+                first = newNode;
+            }
+            else if(last.next() != null)
+            {
+                last = newNode;
+            }
+        }
+        count++;
+        return true;
     }
 
     @Override
@@ -138,7 +170,7 @@ public class DoubleLinkedList<E> implements Deque<E>{
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return count;
     }
 
     @Override
@@ -191,4 +223,15 @@ public class DoubleLinkedList<E> implements Deque<E>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    @Override
+    public String toString() {
+        StringBuffer s = new StringBuffer();
+        Node aNode = first;
+        while(aNode != null)
+        {
+            s.append(aNode.toString());
+            aNode = aNode.next();
+        }
+        return s.toString();
+    }
 }

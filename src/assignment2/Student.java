@@ -21,6 +21,12 @@ public class Student implements Comparable{
         redId = "";
         gpa = 0.0;
     }
+    public Student(String name, String redId, double gpa)
+    {
+        this.name = name;
+        this.redId = redId;
+        this.gpa = gpa;
+    }
     
     @Override
     public int compareTo(Object t) {

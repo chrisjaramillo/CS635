@@ -60,7 +60,7 @@ public class Node<E> implements Comparable{
         Comparable otherData = (Comparable)awfullyNamedNode.data();
         Comparable thisData = (Comparable)this.data;
         int result = thisData.compareTo(otherData);
-        if(result > 0)
+        if(result <= 0)
         {
             if(next == null)
             {
