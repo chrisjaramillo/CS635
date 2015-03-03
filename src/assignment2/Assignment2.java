@@ -16,7 +16,8 @@ public class Assignment2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        DoubleLinkedList<Student> list = new DoubleLinkedList<>();
+        DoubleLinkedListOrderStrategy strategy = new DoubleLinkedListIncreasingOrderStrategy();
+        DoubleLinkedList<Student> list = new DoubleLinkedList<>(strategy);
         Student student = new Student("Albert", "9302832", 3.5);
         Student student1 = new Student("Ben", "8383", 2.5);
         Student student2 = new Student("Chris", "09302", 1.5);

@@ -18,12 +18,14 @@ public class DoubleLinkedList<E> implements Deque<E>{
     private Node<E> first;
     private Node<E> last;
     private int count;
+    private DoubleLinkedListOrderStrategy<E> orderStrategy;
     
-    public DoubleLinkedList()
+    public DoubleLinkedList(DoubleLinkedListOrderStrategy<E> strategy)
     {
-        first = null;
-        last = null;
-        count = 0;
+        this.first = null;
+        this.last = null;
+        this.count = 0;
+        this.orderStrategy = strategy;
     }
 
     @Override
@@ -68,22 +70,46 @@ public class DoubleLinkedList<E> implements Deque<E>{
 
     @Override
     public E getFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        E firstData = null;
+        if(first != null)
+        {
+            firstData = first.data();
+            first = first.next();
+            count --;
+        }
+        return firstData;
     }
 
     @Override
     public E getLast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        E lastData = null;
+        if(last != null)
+        {
+            lastData = last.data();
+            last = last.previous();
+            count--;
+        }
+        return lastData;
     }
 
     @Override
     public E peekFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        E firstData = null;
+        if(first != null)
+        {
+            firstData = first.data();
+        }
+        return firstData;
     }
 
     @Override
     public E peekLast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        E lastData = null;
+        if(last != null)
+        {
+            lastData = last.data();
+        }
+        return lastData;
     }
 
     @Override
@@ -98,28 +124,30 @@ public class DoubleLinkedList<E> implements Deque<E>{
 
     @Override
     public boolean add(E e) {
+        System.out.println(this);
         if(e == null)
         {
             return false;
         }
+        Node<E> newNode = new Node(e);
         if(count == 0)
         {
-            first = last = new Node(e);
+            first = last = newNode;
         }
         else
         {
-            Node<E> newNode = new Node(e);
-            first.add(newNode);
-            if(first.previous() != null)
-            {
-                first = newNode;
-            }
-            else if(last.next() != null)
-            {
-                last = newNode;
-            }
+            orderStrategy.addItem(first, newNode);
         }
         count++;
+        
+        if(first.previous() != null)
+        {
+            first = newNode;
+        }
+        if(last.next() != null)
+        {
+            last = newNode;
+        }
         return true;
     }
 
@@ -185,12 +213,18 @@ public class DoubleLinkedList<E> implements Deque<E>{
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return count == 0;
     }
 
     @Override
     public Object[] toArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Object[] thisAsArray = new Object[count];
+        Node<E> currentNode = first;
+        for(int i=0; i < count; i++)
+        {
+            thisAsArray[i] = (Object)currentNode.data();
+        }
+        return thisAsArray;
     }
 
     @Override
