@@ -11,44 +11,28 @@ package assignment2;
  */
 public class DoubleLinkedListDecreasingOrderStrategy<E> implements DoubleLinkedListOrderStrategy<E>{
     @Override
+    public Node firstNode()
+    {
+        return new DoubleLinkedListLastNode<>();
+    }
+    
+    @Override
+    public Node lastNode()
+    {
+        return new DoubleLinkedListFirstNode<>();
+    }
+    
+    @Override
     public boolean addItem(Node<E> first, Node<E> added) {
-        boolean itemAdded = false;
-        while(itemAdded == false && first.next() != null)
+        Node currentItem = first;
+        while(currentItem.compareTo(added) > 0)
         {
-            if(first.compareTo(added) > 0)
-            {
-                first = first.next();
-            }
-            else
-            {
-                added.next(first);
-                if(first.previous() != null)
-                {
-                    added.previous(first.previous());
-                    added.previous().next(added);
-                }
-                first.previous(added);
-                itemAdded = true;
-            }
+            currentItem = currentItem.next();
         }
-        if(first.next() == null)
-        {
-            if(first.compareTo(added) > 0)
-            {
-                first.next(added);
-                added.previous(first);
-            }
-            else
-            {
-                added.next(first);
-                if(first.previous() != null)
-                {
-                    added.previous(first.previous());
-                    added.previous().next(added);
-                }
-                first.previous(added);
-            }
-        }
+        added.next(currentItem);
+        added.previous(currentItem.previous());
+        added.previous().next(added);
+        currentItem.previous(added);
         return true;
     }    
 }

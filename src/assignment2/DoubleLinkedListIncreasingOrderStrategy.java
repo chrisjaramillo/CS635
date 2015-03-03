@@ -12,40 +12,26 @@ package assignment2;
 public class DoubleLinkedListIncreasingOrderStrategy<E> implements DoubleLinkedListOrderStrategy<E>{
 
     @Override
-    public boolean addItem(Node<E> first, Node<E> added) {
-        int comparison = 0; 
-        boolean done = false;
-        while(first.next() != null && !done)
+    public boolean addItem(Node<E> currentItem, Node<E> added) 
+    {
+        while(currentItem.compareTo(added) < 0)
         {
-            comparison = first.compareTo(added);
-            if(comparison <= 0)
-            {
-                first = first.next();
-            }
-            else
-            {
-                added.next(first);
-                added.previous(first.previous());
-                added.previous().next(added);
-                first.previous(added);
-                done = true;
-            }
+            currentItem = currentItem.next();
         }
-        if(first.next() == null)
-        {
-            if(first.compareTo(added) <= 0)
-            {
-                first.next(added);
-                added.previous(first);
-            }
-            else
-            {
-                added.next(first);
-                added.previous(first.previous());
-                added.previous().next(added);
-                first.previous(added);
-            }
-        }
+        added.next(currentItem);
+        added.previous(currentItem.previous());
+        added.previous().next(added);
+        currentItem.previous(added);
         return true;
+    }
+
+    @Override
+    public Node firstNode() {
+        return new DoubleLinkedListFirstNode<>();
+    }
+
+    @Override
+    public Node lastNode() {
+        return new DoubleLinkedListLastNode<>();
     }
 }

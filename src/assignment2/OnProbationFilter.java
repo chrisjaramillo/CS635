@@ -9,12 +9,6 @@ package assignment2;
  *
  * @author Christopher
  */
-public interface DoubleLinkedListOrderStrategy<E> {
-    
-    Node firstNode();
-    
-    Node lastNode();
-    
-    boolean addItem(Node<E> first, Node<E> added);
+public class OnProbationFilter {
     
 }

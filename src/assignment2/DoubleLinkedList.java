@@ -22,10 +22,12 @@ public class DoubleLinkedList<E> implements Deque<E>{
     
     public DoubleLinkedList(DoubleLinkedListOrderStrategy<E> strategy)
     {
-        this.first = null;
-        this.last = null;
-        this.count = 0;
         this.orderStrategy = strategy;
+        this.first = strategy.firstNode();
+        this.last = strategy.lastNode();
+        first.next(last);
+        last.previous(first);
+        this.count = 0;
     }
 
     @Override
@@ -124,30 +126,29 @@ public class DoubleLinkedList<E> implements Deque<E>{
 
     @Override
     public boolean add(E e) {
-        System.out.println(this);
         if(e == null)
         {
             return false;
         }
         Node<E> newNode = new Node(e);
-        if(count == 0)
+        /*if(count == 0)
         {
             first = last = newNode;
         }
         else
-        {
+        {*/
             orderStrategy.addItem(first, newNode);
-        }
+        //}
         count++;
         
-        if(first.previous() != null)
+        /*if(first.previous() != null)
         {
             first = newNode;
         }
         if(last.next() != null)
         {
             last = newNode;
-        }
+        }*/
         return true;
     }
 
@@ -203,7 +204,7 @@ public class DoubleLinkedList<E> implements Deque<E>{
 
     @Override
     public Iterator<E> iterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new DoubleLinkedListIterator(this, first);
     }
 
     @Override

@@ -11,9 +11,9 @@ package assignment2;
  * @param <E>
  */
 public class Node<E> implements Comparable{
-    private E data;
-    private Node<E> next;
-    private Node<E> previous;
+    protected E data;
+    protected Node<E> next;
+    protected Node<E> previous;
 
     public Node()
     {

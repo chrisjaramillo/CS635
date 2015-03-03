@@ -5,6 +5,8 @@
  */
 package assignment2;
 
+import java.util.Iterator;
+
 /**
  *
  * @author Christopher
@@ -16,7 +18,7 @@ public class Assignment2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        DoubleLinkedListOrderStrategy strategy = new DoubleLinkedListIncreasingOrderStrategy();
+        DoubleLinkedListOrderStrategy strategy = new DoubleLinkedListDecreasingOrderStrategy();
         DoubleLinkedList<Student> list = new DoubleLinkedList<>(strategy);
         Student student = new Student("Albert", "9302832", 3.5);
         Student student1 = new Student("Ben", "8383", 2.5);
@@ -29,6 +31,12 @@ public class Assignment2 {
         list.add(student1);
         list.add(student4);
         System.out.println(list);
+        Iterator myIter = list.iterator();
+        
+        while(myIter.hasNext())
+        {
+            System.out.println(myIter.next());
+        }
     }
     
 }

@@ -35,7 +35,8 @@ public class DoubleLinkedListIterator<E> implements Iterator<E>{
 
     @Override
     public E next() {
-        return this.currentNode.next().data();
+        this.currentNode = this.currentNode.next();
+        current++;
+        return this.currentNode.data();
     }
-    
 }
