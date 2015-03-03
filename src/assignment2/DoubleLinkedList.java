@@ -72,46 +72,22 @@ public class DoubleLinkedList<E> implements Deque<E>{
 
     @Override
     public E getFirst() {
-        E firstData = null;
-        if(first != null)
-        {
-            firstData = first.data();
-            first = first.next();
-            count --;
-        }
-        return firstData;
+        return first.next.data();
     }
 
     @Override
     public E getLast() {
-        E lastData = null;
-        if(last != null)
-        {
-            lastData = last.data();
-            last = last.previous();
-            count--;
-        }
-        return lastData;
+        return last.previous().data();
     }
 
     @Override
     public E peekFirst() {
-        E firstData = null;
-        if(first != null)
-        {
-            firstData = first.data();
-        }
-        return firstData;
+        return first.next().data();
     }
 
     @Override
     public E peekLast() {
-        E lastData = null;
-        if(last != null)
-        {
-            lastData = last.data();
-        }
-        return lastData;
+        return last.previous().data();
     }
 
     @Override
@@ -131,24 +107,9 @@ public class DoubleLinkedList<E> implements Deque<E>{
             return false;
         }
         Node<E> newNode = new Node(e);
-        /*if(count == 0)
-        {
-            first = last = newNode;
-        }
-        else
-        {*/
-            orderStrategy.addItem(first, newNode);
-        //}
+        orderStrategy.addItem(first, newNode);
         count++;
         
-        /*if(first.previous() != null)
-        {
-            first = newNode;
-        }
-        if(last.next() != null)
-        {
-            last = newNode;
-        }*/
         return true;
     }
 
@@ -262,9 +223,9 @@ public class DoubleLinkedList<E> implements Deque<E>{
     public String toString() {
         StringBuffer s = new StringBuffer();
         Node aNode = first;
-        while(aNode != null)
+        while(aNode.next() != last)
         {
-            s.append(aNode.toString());
+            s.append(aNode.next().toString());
             aNode = aNode.next();
         }
         return s.toString();

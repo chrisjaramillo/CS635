@@ -29,10 +29,7 @@ public class DoubleLinkedListDecreasingOrderStrategy<E> implements DoubleLinkedL
         {
             currentItem = currentItem.next();
         }
-        added.next(currentItem);
-        added.previous(currentItem.previous());
-        added.previous().next(added);
-        currentItem.previous(added);
+        added.add(currentItem.previous(), currentItem);
         return true;
     }    
 }

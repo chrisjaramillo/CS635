@@ -55,34 +55,12 @@ public class Node<E> implements Comparable{
         this.previous = value;
     }
     
-    public void add(Node<E> awfullyNamedNode)
+    public void add(Node<E> previousNode, Node<E> nextNode)
     {
-        Comparable otherData = (Comparable)awfullyNamedNode.data();
-        Comparable thisData = (Comparable)this.data;
-        int result = thisData.compareTo(otherData);
-        if(result <= 0)
-        {
-            if(next == null)
-            {
-                this.next = awfullyNamedNode;
-                awfullyNamedNode.previous(this);
-            }
-            else
-            {
-                next.add(awfullyNamedNode);
-            }
-        }
-        else
-        {
-            awfullyNamedNode.next(this);
-            awfullyNamedNode.previous(this.previous);
-            this.previous = awfullyNamedNode;
-            if(awfullyNamedNode.previous() != null)
-            {
-                awfullyNamedNode.previous().next(awfullyNamedNode);
-            }
-        }
-        
+        this.previous(previousNode);
+        this.next(nextNode);
+        this.previous().next(this);
+        this.next().previous(this);
     }
     
     @Override

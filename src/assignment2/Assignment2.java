@@ -18,7 +18,7 @@ public class Assignment2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        DoubleLinkedListOrderStrategy strategy = new DoubleLinkedListDecreasingOrderStrategy();
+        DoubleLinkedListOrderStrategy strategy = new DoubleLinkedListIncreasingOrderStrategy();
         DoubleLinkedList<Student> list = new DoubleLinkedList<>(strategy);
         Student student = new Student("Albert", "9302832", 3.5);
         Student student1 = new Student("Ben", "8383", 2.5);
@@ -33,9 +33,11 @@ public class Assignment2 {
         System.out.println(list);
         Iterator myIter = list.iterator();
         
-        while(myIter.hasNext())
+        
+        OnProbationFilter probationFilter = new OnProbationFilter(list.iterator());
+        while(probationFilter.hasNext())
         {
-            System.out.println(myIter.next());
+            System.out.println(probationFilter.next());
         }
     }
     
