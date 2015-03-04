@@ -40,95 +40,14 @@ public class DoubleLinkedListTest {
     }
 
     /**
-     * Test of addFirst method, of class DoubleLinkedList.
-     */
-    @Test
-    public void testAddFirst() {
-        System.out.println("addFirst");
-        Object e = null;
-        DoubleLinkedList instance = new DoubleLinkedList();
-        instance.addFirst(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of addLast method, of class DoubleLinkedList.
-     */
-    @Test
-    public void testAddLast() {
-        System.out.println("addLast");
-        Object e = null;
-        DoubleLinkedList instance = new DoubleLinkedList();
-        instance.addLast(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getFirst method, of class DoubleLinkedList.
-     */
-    @Test
-    public void testGetFirst() {
-        System.out.println("getFirst");
-        DoubleLinkedList instance = new DoubleLinkedList();
-        Object expResult = null;
-        Object result = instance.getFirst();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getLast method, of class DoubleLinkedList.
-     */
-    @Test
-    public void testGetLast() {
-        System.out.println("getLast");
-        DoubleLinkedList instance = new DoubleLinkedList();
-        Object expResult = null;
-        Object result = instance.getLast();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of peekFirst method, of class DoubleLinkedList.
-     */
-    @Test
-    public void testPeekFirst() {
-        System.out.println("peekFirst");
-        DoubleLinkedList instance = new DoubleLinkedList();
-        Object expResult = null;
-        Object result = instance.peekFirst();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of peekLast method, of class DoubleLinkedList.
-     */
-    @Test
-    public void testPeekLast() {
-        System.out.println("peekLast");
-        DoubleLinkedList instance = new DoubleLinkedList();
-        Object expResult = null;
-        Object result = instance.peekLast();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of add method, of class DoubleLinkedList.
      */
     @Test
     public void testAddNull() {
         System.out.println("add");
-        Object e = null;
-        DoubleLinkedList instance = new DoubleLinkedList();
+        Student e = null;
+        DoubleLinkedListOrderStrategy strategy = new DoubleLinkedListIncreasingOrderStrategy();
+        DoubleLinkedList<Student> instance = new DoubleLinkedList<Student>(strategy);
         boolean expResult = false;
         boolean result = instance.add(e);
         assertEquals(expResult, result);
@@ -141,7 +60,8 @@ public class DoubleLinkedListTest {
     public void testAddNullToExisting() {
         System.out.println("add");
         Student e = null;
-        DoubleLinkedList<Student> instance = new DoubleLinkedList();
+        DoubleLinkedListOrderStrategy strategy = new DoubleLinkedListIncreasingOrderStrategy();
+        DoubleLinkedList<Student> instance = new DoubleLinkedList(strategy);
         instance.add(new Student());
         boolean expResult = false;
         boolean result = instance.add(e);
@@ -155,7 +75,8 @@ public class DoubleLinkedListTest {
     public void testAddOneStudent() {
         System.out.println("addOneStudent");
         Student e = new Student();
-        DoubleLinkedList<Student> instance = new DoubleLinkedList<>();
+        DoubleLinkedListOrderStrategy strategy = new DoubleLinkedListIncreasingOrderStrategy();
+        DoubleLinkedList<Student> instance = new DoubleLinkedList<>(strategy);
         boolean expResult = true;
         boolean result = instance.add(e);
         assertEquals(expResult, result);
@@ -170,7 +91,8 @@ public class DoubleLinkedListTest {
         System.out.println("addTwoStudents");
         Student e = new Student();
         Student e1 = new Student();
-        DoubleLinkedList<Student> instance = new DoubleLinkedList<>();
+        DoubleLinkedListOrderStrategy strategy = new DoubleLinkedListIncreasingOrderStrategy();
+        DoubleLinkedList<Student> instance = new DoubleLinkedList<>(strategy);
         boolean expResult = true;
         boolean result = instance.add(e);
         assertEquals(expResult, result);
@@ -189,7 +111,8 @@ public class DoubleLinkedListTest {
         Student e = new Student();
         Student e1 = new Student();
         Student e2 = new Student();
-        DoubleLinkedList<Student> instance = new DoubleLinkedList<>();
+        DoubleLinkedListOrderStrategy strategy = new DoubleLinkedListIncreasingOrderStrategy();
+        DoubleLinkedList<Student> instance = new DoubleLinkedList<>(strategy);
         boolean expResult = true;
         boolean result = instance.add(e);
         assertEquals(expResult, result);
@@ -212,7 +135,8 @@ public class DoubleLinkedListTest {
         Student e1 = new Student();
         Student e2 = new Student();
         Student e3 = new Student();
-        DoubleLinkedList<Student> instance = new DoubleLinkedList<>();
+        DoubleLinkedListOrderStrategy strategy = new DoubleLinkedListIncreasingOrderStrategy();
+        DoubleLinkedList<Student> instance = new DoubleLinkedList<>(strategy);
         boolean expResult = true;
         boolean result = instance.add(e);
         assertEquals(expResult, result);
@@ -225,20 +149,6 @@ public class DoubleLinkedListTest {
     }
 
     /**
-     * Test of peek method, of class DoubleLinkedList.
-     */
-    @Test
-    public void testPeek() {
-        System.out.println("peek");
-        DoubleLinkedList instance = new DoubleLinkedList();
-        Object expResult = null;
-        Object result = instance.peek();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of size method, of class DoubleLinkedList.
      */
     @Test
@@ -248,7 +158,8 @@ public class DoubleLinkedListTest {
         Student e1 = new Student();
         Student e2 = new Student();
         Student e3 = new Student();
-        DoubleLinkedList<Student> instance = new DoubleLinkedList<>();
+        DoubleLinkedListOrderStrategy strategy = new DoubleLinkedListIncreasingOrderStrategy();
+        DoubleLinkedList<Student> instance = new DoubleLinkedList<>(strategy);
         boolean result = instance.add(e);
         assertEquals(instance.size(), 1);
         result = instance.add(e1);
@@ -265,26 +176,11 @@ public class DoubleLinkedListTest {
     @Test
     public void testIterator() {
         System.out.println("iterator");
-        DoubleLinkedList instance = new DoubleLinkedList();
+        DoubleLinkedListOrderStrategy strategy = new DoubleLinkedListIncreasingOrderStrategy();
+        DoubleLinkedList instance = new DoubleLinkedList(strategy);
         Iterator expResult = null;
         Iterator result = instance.iterator();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of descendingIterator method, of class DoubleLinkedList.
-     */
-    @Test
-    public void testDescendingIterator() {
-        System.out.println("descendingIterator");
-        DoubleLinkedList instance = new DoubleLinkedList();
-        Iterator expResult = null;
-        Iterator result = instance.descendingIterator();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotNull(result);
     }
 
     /**
@@ -293,12 +189,11 @@ public class DoubleLinkedListTest {
     @Test
     public void testIsEmpty() {
         System.out.println("isEmpty");
-        DoubleLinkedList instance = new DoubleLinkedList();
-        boolean expResult = false;
+        DoubleLinkedListOrderStrategy strategy = new DoubleLinkedListIncreasingOrderStrategy();
+        DoubleLinkedList instance = new DoubleLinkedList(strategy);
+        boolean expResult = true;
         boolean result = instance.isEmpty();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -307,26 +202,9 @@ public class DoubleLinkedListTest {
     @Test
     public void testToArray_0args() {
         System.out.println("toArray");
-        DoubleLinkedList instance = new DoubleLinkedList();
-        Object[] expResult = null;
+        DoubleLinkedListOrderStrategy strategy = new DoubleLinkedListIncreasingOrderStrategy();
+        DoubleLinkedList instance = new DoubleLinkedList(strategy);
         Object[] result = instance.toArray();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of toArray method, of class DoubleLinkedList.
-     */
-    @Test
-    public void testToArray_GenericType() {
-        System.out.println("toArray");
-        Object[] ts = null;
-        DoubleLinkedList instance = new DoubleLinkedList();
-        Object[] expResult = null;
-        Object[] result = instance.toArray(ts);
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotNull(result);
     }
 }

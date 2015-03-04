@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Christopher
  */
-public class OnProbationFilter {
+public class OnProbationFilter<E> implements Iterator{
     List<Student> probationList = new ArrayList<>();
     private double probationGpa;
     Iterator probation;
@@ -30,12 +30,17 @@ public class OnProbationFilter {
         }
         probation = probationList.iterator();
     }
-    boolean hasNext()
+    public boolean hasNext()
     {
         return probation.hasNext();
     }
-    Student next()
+    public E next()
     {
-        return (Student)probation.next();
+        return (E)probation.next();
+    }
+    
+    public int size()
+    {
+        return probationList.size();
     }
 }
